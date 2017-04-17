@@ -66,7 +66,8 @@ def create_checkout():
             "email": request.form['email']
           },
         'options': {
-            "submit_for_settlement": True
+            "submit_for_settlement": True,
+            "store_in_vault_on_success": True,
         }
     })
 
