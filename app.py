@@ -1,5 +1,4 @@
 from flask import Flask, redirect, url_for, render_template, request, flash
-
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
@@ -75,6 +74,7 @@ def create_checkout():
             "store_in_vault_on_success": True,
         }
     })
+    print(result)
 
     if result.is_success or result.transaction:
         return redirect(url_for('show_checkout',transaction_id=result.transaction.id))
