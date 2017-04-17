@@ -65,8 +65,14 @@ def create_checkout():
     result = braintree.Transaction.sale({
         'amount': request.form['amount'],
         'payment_method_nonce': request.form['payment_method_nonce'],
+        'customer': {
+        'first_name': request.form['first_name'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email']
+        },
         'options': {
-            "submit_for_settlement": True
+            "submit_for_settlement": True,
+            "store_in_vault_on_success": True,
         }
     })
 
@@ -75,6 +81,8 @@ def create_checkout():
     else:
         for x in result.errors.deep_errors: flash('Error: %s: %s' % (x.code, x.message))
         return redirect(url_for('new_checkout'))
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4567, debug=True)

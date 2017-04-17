@@ -94,7 +94,7 @@ button, select {
 
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
-  cursor: pointer; }
+  cursor: default; }
 
 button[disabled], html input[disabled] {
   cursor: default; }
@@ -1330,7 +1330,7 @@ label {
   border-top: solid 1px #DEE2E5;
   border-bottom: solid 1px #DEE2E5;
   color: #6E787F;
-  cursor: pointer;
+  cursor: default;
   display: block;
   font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -1368,7 +1368,7 @@ input {
   display: block;
   border: none;
   color: #000;
-  cursor: pointer;
+  cursor: default;
   font-size: 16px;
   outline: none;
   line-height: 1;
