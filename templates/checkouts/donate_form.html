@@ -8,7 +8,7 @@
         <div id='top' class='height-half' style='background-image: url(./img_src/home_cover.jpg)'>
 
             <p style='top: 60%'>
-                <span class='headline-size'>Support our every day ecological restoration efforts.</span>
+                <span class='headline-size'>Tell us about yourself</span>
             </p>
             </div>
     </header>
@@ -37,16 +37,26 @@
         </label>
 
       <section>
-        <div class="bt-drop-in-wrapper">
-          <div id="bt-dropin"></div>
-        </div>
-
+          <p style='top: 60%'>
+              <span class='headline-size'>Payment Options</span>
+          </p>
           <label for="amount">
             <span class="input-label">Amount</span>
             <div class="input-wrapper amount-wrapper">
               <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
             </div>
           </label>
+          <label for="recurring">
+            Make this a regular monthly contribution:
+            <span class="input-label">recurring</span>
+            <div class="input-wrapper">
+              <input id="recurring" name="recurring" type="checkbox" value="Make this a regular monthly contribution" >
+            </div>
+          </label>
+
+        <div class="bt-drop-in-wrapper">
+          <div id="bt-dropin"></div>
+        </div>
         </section>
 
       <button class="button" type="submit"><span>Test Transaction</span></button>
@@ -63,7 +73,12 @@
 
   var client_token = '{{ client_token }}';
   braintree.setup(client_token, "dropin", {
-    container: "bt-dropin"
+    container: "bt-dropin",
+    paypal: {
+        button: {
+          type: 'checkout'
+      }
+    }
   });
 </script>
 {% endblock %}
