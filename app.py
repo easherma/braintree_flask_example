@@ -31,6 +31,11 @@ TRANSACTION_SUCCESS_STATUSES = [
 def index():
     return render_template('index.html')
 
+@app.route('/donate', methods=['GET'])
+def donate():
+    client_token = braintree.ClientToken.generate()
+    return render_template('donate.html', client_token=client_token)
+
 @app.route('/checkouts/new', methods=['GET'])
 def new_checkout():
     client_token = braintree.ClientToken.generate()
