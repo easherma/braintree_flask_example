@@ -29,7 +29,7 @@ TRANSACTION_SUCCESS_STATUSES = [
 
 @app.route('/', methods=['GET'])
 def index():
-    return redirect(url_for('new_checkout'))
+    return render_template('index.html')
 
 @app.route('/checkouts/new', methods=['GET'])
 def new_checkout():

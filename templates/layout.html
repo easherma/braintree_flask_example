@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BraintreeFlaskExample</title>
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/app.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/overrides.css') }}">
   <script src="{{ url_for('static', filename='javascript/vendor/jquery-2.1.4.min.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/vendor/jquery.lettering-0.6.1.min.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/demo.js') }}"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href='./public/public.css'>
+      <meta name='description' content='Official website for Green Again.'>
+      <link rel='stylesheet' type='text/css' href='./work/work.css'>
+      <title>Green Again | Donate</title>
 </head>
 <body>
   <header class="main">
     <div class="container wide">
-      <div class="content slim">
-        <div class="set">
-          <div class="fill">
-            <a class="pseudoshop" href="/">PSEUDO<strong>SHOP</strong></a>
-          </div>
 
-          <div class="fit">
-            <a class="braintree" href="https://developers.braintreepayments.com/guides/drop-in" target="_blank">Braintree</a>
+      <div class="content slim">
+          <link rel='stylesheet' type='text/css' href='./navbar/navbar.css'>
+      <div id='nav-bar'>
+          <a href='./index.html'><img src='./icon_src/ga_logo.png' /></a>
+          <div id='nav-container'>
+              <a href='./work.html'><div class='nav-item vertical-center'>Our Work</div></a>
+              <a href='./about.html'><div class='nav-item vertical-center'>About</div></a>
+              <a href='./donate.html'><div class='nav-item vertical-center'>Support Our Work</div></a>
+              <a href='https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SJQDUHJ9MWVRS&lc=US&item_name=Green%20Again%20Madagascar&item_number=Ivoloina%20Park%20Project&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted' target="_blank"><div class='button vertical-center' style='margin-left: 1.5em'>DONATE</div></a>
           </div>
-        </div>
       </div>
     </div>
 
