@@ -60,6 +60,11 @@ def create_checkout():
     result = braintree.Transaction.sale({
         'amount': request.form['amount'],
         'payment_method_nonce': request.form['payment_method_nonce'],
+        "customer": {
+            "first_name": "Drew",
+            "last_name": "Smith",
+            "email": request.form['email']
+          },
         'options': {
             "submit_for_settlement": True
         }

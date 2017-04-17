@@ -23,6 +23,13 @@
               <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
             </div>
           </label>
+          <label for="email">
+              Email Address
+            <span class="input-label">Email:</span>
+            <div class="input-wrapper">
+              <input id="email" name="email" type="email" placeholder="ilovetrees@gmail.com" >
+            </div>
+          </label>
         </section>
 
       <button class="button" type="submit"><span>Test Transaction</span></button>
@@ -31,7 +38,7 @@
   </div>
 </div>
 
-<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+<script src="https://js.braintreegateway.com/js/braintree-2.31.0.min.js"></script>
 <script>
   var checkout = new Demo({
     formID: 'payment-form'
