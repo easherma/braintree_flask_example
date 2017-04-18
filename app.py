@@ -61,23 +61,47 @@ def show_checkout(transaction_id):
 
 @app.route('/checkouts', methods=['POST'])
 def create_checkout():
-    result = braintree.Transaction.sale({
-        'amount': request.form['amount'],
-        'payment_method_nonce': request.form['payment_method_nonce'],
-        'customer': {
-        'first_name': request.form['first_name'],
-        'last_name': request.form['last_name'],
-        'email': request.form['email']
-        },
-        'options': {
-            "submit_for_settlement": True,
-            "store_in_vault_on_success": True,
-        }
-    })
-    print(result)
+    if 'recurring' not in request.form:
+        print('no subscription, transaction')
+        result = braintree.Transaction.sale({
+            'amount': request.form['amount'],
+            'payment_method_nonce': request.form['payment_method_nonce'],
+            'customer': {
+            'first_name': request.form['first_name'],
+            'last_name': request.form['last_name'],
+            'email': request.form['email']
+            },
+            'options': {
+                "submit_for_settlement": True,
+                "store_in_vault_on_success": True,
+            }
+        })
+    if 'recurring' in request.form:
+        print('recurring!')
+        customer_result = braintree.Customer.create({
+            'first_name': request.form['first_name'],
+            'last_name': request.form['last_name'],
+            'email': request.form['email'],
+            "payment_method_nonce": request.form['payment_method_nonce']
+        })
 
-    if result.is_success or result.transaction:
+        if customer_result.is_success:
+            customer_id = customer_result.customer.id
+            payment_token = customer_result.customer.payment_methods[0].token
+
+        result = braintree.Subscription.create({
+            #'payment_method_nonce': request.form['payment_method_nonce'],
+            "payment_method_token": payment_token,
+            "plan_id": "montly",
+            "options": {
+                "start_immediately": True
+                }
+        })
+
+    try:
         return redirect(url_for('show_checkout',transaction_id=result.transaction.id))
+    except AttributeError:
+        return redirect(url_for('show_checkout',transaction_id=result.subscription.id))
     else:
         for x in result.errors.deep_errors: flash('Error: %s: %s' % (x.code, x.message))
         return redirect(url_for('new_checkout'))
