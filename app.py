@@ -101,7 +101,7 @@ def create_checkout():
     try:
         return redirect(url_for('show_checkout',transaction_id=result.transaction.id))
     except AttributeError:
-        return redirect(url_for('show_checkout',transaction_id=result.subscription.id))
+        return redirect(url_for('show_checkout',transaction_id=result.subscription.transactions[0].id))
     else:
         for x in result.errors.deep_errors: flash('Error: %s: %s' % (x.code, x.message))
         return redirect(url_for('new_checkout'))
